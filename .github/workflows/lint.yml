@@ -1,0 +1,14 @@
+name: Lint
+
+on: [push]
+
+jobs:
+  lint_scripts:
+    name: Lint scripts
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Update shellcheck
+      run: sudo apt install shellcheck
+    - name: Lint scripts
+      run: shellcheck *.sh
