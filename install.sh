@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Color codes for output
 RED='\e[1;31m'
@@ -16,5 +17,15 @@ if [ $? -eq 1 ]; then
 	exit 1
 fi
 echo -e "${TICK}"
+
+echo -ne " ${INFO} Validating configuration"
+find -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f > /dev/null
+echo -e "${TICK}"
+
+echo -ne " ${INFO} Creating config directory"
 sudo mkdir -p /etc/unbound/unbound.conf.d
+echo -e "${TICK}"
+
+echo -ne " ${INFO} Linking config files"
 sudo ln -f ./*.conf /etc/unbound/unbound.conf.d
+echo -e "${TICK}"
