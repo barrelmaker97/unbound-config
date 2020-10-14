@@ -18,6 +18,14 @@ if [ $? -eq 1 ]; then
 fi
 echo -e "${TICK}"
 
+echo -ne " ${INFO} Checking for root hints file"
+if ! [ -f /var/lib/unbound/root.hints ]; then
+	echo -e "${TICK}"
+	echo -ne " ${INFO} Downloading root hints file"
+	sudo curl -s -o /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
+fi
+echo -e "${TICK}"
+
 echo -ne " ${INFO} Validating configuration"
 find . -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f > /dev/null
 echo -e "${TICK}"
