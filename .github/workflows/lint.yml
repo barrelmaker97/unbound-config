@@ -20,6 +20,6 @@ jobs:
       - name: Install unbound
         run: sudo apt install -y unbound
       - name: Update hints file
-        run: curl --output /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
+        run: sudo curl --output /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
       - name: Validate Compose Files
         run: find . -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f
