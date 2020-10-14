@@ -19,7 +19,7 @@ fi
 echo -e "${TICK}"
 
 echo -ne " ${INFO} Validating configuration"
-find -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f > /dev/null
+find . -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f > /dev/null
 echo -e "${TICK}"
 
 echo -ne " ${INFO} Creating config directory"
