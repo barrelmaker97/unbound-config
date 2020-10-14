@@ -1,14 +1,23 @@
+---
 name: Lint
 
 on: [push]
 
 jobs:
-  lint_scripts:
+  lint:
     name: Lint scripts
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Update shellcheck
-      run: sudo apt install shellcheck
-    - name: Lint scripts
-      run: shellcheck *.sh
+      - uses: actions/checkout@master
+      - name: Update shellcheck
+        run: sudo apt install -y shellcheck
+      - name: Lint scripts
+        run: shellcheck *.sh
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install unbound
+        run: sudo apt install -y unbound
+      - name: Validate Compose Files
+        run: find . -name "*.conf" -print0 | xargs -0 -n1 unbound-checkconf  -f
