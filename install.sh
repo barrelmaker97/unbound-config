@@ -6,9 +6,9 @@ RED='\e[1;31m'
 GREEN='\e[1;32m'
 RESET='\e[0m'
 
-TICK="\\r [${GREEN}✓${RESET}]"
-CROSS="\\r [${RED}✗${RESET}]"
-INFO="\\r [i]"
+TICK="\\r[${GREEN}✓${RESET}]"
+CROSS="\\r[${RED}✗${RESET}]"
+INFO="\\r[i]"
 
 echo -ne "${INFO} Checking for unbound"
 command -v unbound > /dev/null
@@ -37,3 +37,18 @@ echo -e "${TICK}"
 echo -ne " ${INFO} Linking config files"
 sudo ln -f ./*.conf /etc/unbound/unbound.conf.d
 echo -e "${TICK}"
+
+restart_unbound ()
+{
+	echo -ne " ${INFO} Restarting unbound"
+	sudo systemctl restart unbound > /dev/null
+	echo -e "${TICK}"
+}
+
+echo "Do you want to restart unbound?"
+select yn in "Yes" "No"; do
+	case $yn in
+		Yes ) restart_unbound; break;;
+		No ) exit;;
+	esac
+done
