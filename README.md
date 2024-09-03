@@ -10,18 +10,10 @@ To create a systemd service to automatically run unbound-exporter at startup, co
 
 ### Change Ownership:
 ```
+sudo cp ./unbound-exporter.service /etc/systemd/system/
 sudo chown root:root /etc/systemd/system/unbound-exporter.service
-```
-### Enable:
-```
 sudo systemctl enable unbound-exporter
-```
-### Start:
-```
 sudo systemctl start unbound-exporter
-```
-### Status:
-```
 sudo systemctl status unbound-exporter
 ```
 
