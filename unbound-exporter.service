@@ -1,0 +1,14 @@
+[Unit]
+Description=Unbound Exporter
+
+[Service]
+Type=simple
+Restart=on-failure
+User=root
+ExecStart=/usr/local/bin/unbound-exporter \
+	-unbound.ca "" \
+	-unbound.cert "" \
+	-unbound.host "unix:///run/unbound.ctl"
+
+[Install]
+WantedBy=multi-user.target
