@@ -7,8 +7,6 @@ https://github.com/letsencrypt/unbound_exporter
 
 ## Exporter Service
 To create a systemd service to automatically run unbound-exporter at startup, copy unbound-exporter.service from to /etc/systemd/system/ dir, make sure it is under the ownership of root, then enable and start the service.
-
-### Change Ownership:
 ```
 sudo cp ./unbound-exporter.service /etc/systemd/system/
 sudo chown root:root /etc/systemd/system/unbound-exporter.service
