@@ -1,6 +1,10 @@
 # unbound-config
 Unbound configuration files and install script
 
+## Unbound Exporter
+Optionally, a Prometheus Exporter for Unbound can be installed to monitor performance:
+https://github.com/letsencrypt/unbound_exporter
+
 ## Exporter Service
 To create a systemd service to automatically run unbound-exporter at startup, copy unbound-exporter.service from to /etc/systemd/system/ dir, make sure it is under the ownership of root, then enable and start the service.
 
